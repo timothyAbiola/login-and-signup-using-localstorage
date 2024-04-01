@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-image: url(abstract-uv-ultraviolet-light-composition.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .div1 {
+        /* border: 1px solid blue; */
+        width: 400px;
+        height: fit-content;
+        text-align: center;
+        margin: 100px auto 0;
+        background-color: rgba(128, 128, 128, 0.348);
+        padding: 10px 0;
+      }
+      input {
+        height: 40px;
+        display: block;
+        width: 350px;
+        margin: 20px auto 0;
+        background: none;
+        color: white;
+      }
+      button {
+        width: 100px;
+        height: 40px;
+        margin-top: 10px;
+        background-color: black;
+        border: none;
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .anchor {
+        color: white;
+      }
+      .anchor:hover {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">
+      <h1>Sign Up</h1>
+      <input type="text" placeholder="First Name" id="firstName" />
+      <input type="text" placeholder="Last Name" id="lastName" />
+      <input type="email" placeholder="Gmail" id="gmail" />
+      <input type="password" placeholder="Password" id="password1" />
+      <input type="password" placeholder="Comfirm Password" id="password2" />
+      <button onclick="register()">Register</button>
+      <p>
+        already have an account? <a href="login.html" class="anchor">Login</a>
+      </p>
+      <!-- <button onclick="login()">login</button> -->
+    </div>
+  </body>
+</html>
+<script>
+  let input1 = document.getElementById("firstName");
+  let input2 = document.getElementById("lastName");
+  let input3 = document.getElementById("gmail");
+  let input4 = document.getElementById("password1");
+  let input5 = document.getElementById("password2");
+  let arrone = JSON.parse(localStorage.getItem("user")) || [];
+  function register() {
+    let obj1 = {
+      firstName: input1.value,
+      lastName: input2.value,
+      gmail: input3.value,
+      password: input4.value,
+      confirmPassword: input5.value,
+    };
+    if (
+      obj1.firstName == "" ||
+      obj1.lastName == "" ||
+      obj1.gmail == "" ||
+      obj1.password == "" ||
+      obj1.confirmPassword == ""
+    ) {
+      alert("insert details");
+    } else if (obj1.password == obj1.confirmPassword) {
+      arrone.push(obj1);
+      let newObj1 = JSON.stringify(arrone);
+      localStorage.setItem("user", newObj1);
+      window.location.href = "login.html";
+    } else {
+      alert("password mismatch");
+    }
+  }
+</script>
